@@ -1,21 +1,21 @@
 # MackS4FanBandBD
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS4FanBandBD/blob/master/modelagem/modelo-entidade-relacional.png" width="896" height="360"/>
+	<img src="[https://github.com/DarioTeles/MackS4FanBandBD/blob/master/modelagem/modelo-entidade-relacional.png](https://github.com/DarioTeles/MackenzieSI/blob/main/MackS4FanBandBD/modelagem/modelo-entidade-relacional.png)" width="896" height="360"/>
 </p>
 
-Esse é um projeto destinado às disciplinas de Banco de Dados 1 e 2 do curso de Sistemas de Informação realizadas no ano de 2017 e consiste na modelagem e na implantação de scripts SQL no SGBD Oracle Database:
+Esse Ã© um projeto destinado Ã s disciplinas de Banco de Dados 1 e 2 do curso de Sistemas de InformaÃ§Ã£o realizadas no ano de 2017 e consiste na modelagem e na implantaÃ§Ã£o de scripts SQL no SGBD Oracle Database:
 <ul>
-	<li>Criação do banco;</li>
-	<li>Inserção de dados;</li>
+	<li>CriaÃ§Ã£o do banco;</li>
+	<li>InserÃ§Ã£o de dados;</li>
 	<li>Consultas;</li>
 	<li>Procedures;</li>
 	<li>Functions;</li>
 	<li>Triggers.</li>
 </ul>
 
-# Conteúdo do repositório
+# ConteÃºdo do repositÃ³rio
 
-[**/modelagem/**](https://github.com/DarioTeles/MackS4FanBandBD/tree/master/modelagem) - Documentação e modelagem do banco de dados. <br>
-[**/banco_de_dados_1/**](https://github.com/DarioTeles/MackS4FanBandBD/tree/master/banco_de_dados_1) - Pré-requisistos e scripts da disciplina de Banco de Dados 1. <br>
-[**/banco_de_dados_2/**](https://github.com/DarioTeles/MackS4FanBandBD/tree/master/banco_de_dados_2) - Pré-requisistos e scripts da disciplina de Banco de Dados 2. <br>
+[**/modelagem/**](https://github.com/DarioTeles/MackS4FanBandBD/tree/master/modelagem) - DocumentaÃ§Ã£o e modelagem do banco de dados. <br>
+[**/banco_de_dados_1/**](https://github.com/DarioTeles/MackS4FanBandBD/tree/master/banco_de_dados_1) - PrÃ©-requisistos e scripts da disciplina de Banco de Dados 1. <br>
+[**/banco_de_dados_2/**](https://github.com/DarioTeles/MackS4FanBandBD/tree/master/banco_de_dados_2) - PrÃ©-requisistos e scripts da disciplina de Banco de Dados 2. <br>
