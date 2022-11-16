@@ -2,7 +2,7 @@
 
 
 <p align="center">  
-	<img src="https://github.com/DarioTeles/MackS1Loteria/blob/master/images/demonstracao.JPG"/>
+	<img src="/images/demonstracao.JPG"/>
 
 </p>
 
