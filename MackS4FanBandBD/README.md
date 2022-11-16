@@ -1,7 +1,7 @@
 # MackS4FanBandBD
 
 <p align="center">
-	<img src="[https://github.com/DarioTeles/MackS4FanBandBD/blob/master/modelagem/modelo-entidade-relacional.png](https://github.com/DarioTeles/MackenzieSI/blob/main/MackS4FanBandBD/modelagem/modelo-entidade-relacional.png)" width="896" height="360"/>
+	<img src="https://github.com/DarioTeles/MackS4FanBandBD/blob/master/modelagem/modelo-entidade-relacional.png" width="896" height="360"/>
 </p>
 
 Esse é um projeto destinado às disciplinas de Banco de Dados 1 e 2 do curso de Sistemas de Informação realizadas no ano de 2017 e consiste na modelagem e na implantação de scripts SQL no SGBD Oracle Database:
