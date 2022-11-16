@@ -1,0 +1,319 @@
+-- Nome: Dário Teles de Oliveira	TIA: 41582391
+-- Projeto do Lab de BD-II
+
+
+
+-- Etapa1: MODELAGEM e SCRIPT de CRIAÇÃO do BANCO DE DADOS
+
+
+-- 3. script de criação do banco de dados, ou seja, DROP TABLE e CREATE TABLE.
+
+DROP TABLE banda_evento CASCADE CONSTRAINT;
+DROP TABLE repertorio_musica CASCADE CONSTRAINT;
+DROP TABLE repertorio CASCADE CONSTRAINT;
+DROP TABLE musica CASCADE CONSTRAINT;
+DROP TABLE evento CASCADE CONSTRAINT;
+DROP TABLE banda CASCADE CONSTRAINT;
+
+CREATE TABLE banda
+(
+cod_ban INTEGER NOT NULL,
+nom_ban VARCHAR(200) NOT NULL,
+email VARCHAR(200) NOT NULL,
+PRIMARY KEY(cod_ban)
+);
+
+CREATE TABLE evento
+(
+cod_eve INTEGER NOT NULL,
+nom_eve VARCHAR(20) NOT NULL,
+loc VARCHAR(200),
+vlr_ingres INTEGER,
+PRIMARY KEY(cod_eve)
+);
+
+CREATE TABLE musica
+(
+cod_mus INTEGER NOT NULL,
+nom_mus VARCHAR(200) NOT NULL,
+comp VARCHAR(20) NOT NULL,
+PRIMARY KEY(cod_mus)
+);
+
+CREATE TABLE repertorio
+(
+cod_rep INTEGER NOT NULL,
+nom_rep VARCHAR(200) NOT NULL,
+ban INTEGER NOT NULL,
+PRIMARY KEY(cod_rep),
+FOREIGN KEY (ban) REFERENCES banda(cod_ban)
+);
+
+CREATE TABLE repertorio_musica
+(
+cod_mus INTEGER,
+cod_rep INTEGER,
+PRIMARY KEY(cod_mus, cod_rep),
+FOREIGN KEY (cod_mus) REFERENCES musica(cod_mus),
+FOREIGN KEY (cod_rep) REFERENCES repertorio(cod_rep)
+);
+
+CREATE TABLE banda_evento
+(
+cod_ban INTEGER,
+cod_eve INTEGER,
+rep INTEGER,
+PRIMARY KEY(cod_ban, cod_eve, rep),
+FOREIGN KEY (cod_ban) REFERENCES banda(cod_ban),
+FOREIGN KEY (cod_eve) REFERENCES evento(cod_eve),
+FOREIGN KEY (rep) REFERENCES repertorio(cod_rep)
+);
+
+
+
+
+
+-- 4. inserção de dados - INSERT - nas tabelas criadas do banco de dados. 
+
+INSERT INTO banda (cod_ban, nom_ban, email) VALUES (1, 'Metallica', 'contato@metallica.com');
+INSERT INTO banda (cod_ban, nom_ban, email) VALUES (2, 'Green Day', 'eventos@gd.com');
+INSERT INTO banda (cod_ban, nom_ban, email) VALUES (3, 'U2', 'u2@u2.ir');
+
+INSERT INTO evento (cod_eve, nom_eve, loc, vlr_ingres) VALUES (1, 'RockinRio', 'Rio de Janeiro', 800);
+INSERT INTO evento (cod_eve, nom_eve, loc, vlr_ingres) VALUES (2, 'São Paulo Trip', 'São Paulo', 550);
+INSERT INTO evento (cod_eve, nom_eve, loc, vlr_ingres) VALUES (3, 'Festival', 'Curitiba', 330);
+
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (1, 'She', 'Green Day');
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (2, 'Paradise', 'Coldplay');
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (3, 'Iron man', 'Black Sabbath');
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (4, 'One', 'Metallica');
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (5, 'Bell', 'Metallica');
+
+INSERT INTO repertorio (cod_rep, nom_rep, ban) VALUES (1, 'Repertorio01', 1);
+INSERT INTO repertorio (cod_rep, nom_rep, ban) VALUES (2, 'Repertorio02', 2);
+INSERT INTO repertorio (cod_rep, nom_rep, ban) VALUES (3, 'Repertorio03', 3);
+INSERT INTO repertorio (cod_rep, nom_rep, ban) VALUES (4, 'Repertorio04', 1);
+
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (4, 1);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (5, 1);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (1, 2);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (3, 2);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (4, 3);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (2, 4);
+
+INSERT INTO banda_evento (cod_ban, cod_eve, rep) VALUES (1, 1, 1);
+INSERT INTO banda_evento (cod_ban, cod_eve, rep) VALUES (1, 2, 4);
+INSERT INTO banda_evento (cod_ban, cod_eve, rep) VALUES (2, 3, 2);
+INSERT INTO banda_evento (cod_ban, cod_eve, rep) VALUES (3, 2, 3);
+
+
+
+
+
+-- Etapa2: ELABORAÇÃO E IMPLEMENTAÇÃO DE UMA PROCEDURE
+
+
+-- 1. Elaborar e resolver UMA procedure contendo, pelo menos, DOIS argumentos e TRÊS tabelas. Coloque o comando para executar a procedure.
+
+Trocar o repertorio que será tocado num evento por uma determinada banda.
+
+CREATE OR REPLACE PROCEDURE trocar_repertorio
+(vnom_ban IN VARCHAR,
+vnom_eve IN VARCHAR,
+vnom_rep IN VARCHAR
+)
+IS
+vcod_ban INTEGER;
+vcod_eve INTEGER;
+vcod_rep INTEGER;
+BEGIN
+    SELECT cod_ban INTO vcod_ban
+    FROM banda
+    WHERE (nom_ban = vnom_ban);
+    
+    SELECT cod_eve INTO vcod_eve
+    FROM evento
+    WHERE (nom_eve = vnom_eve);
+    
+    SELECT cod_rep INTO vcod_rep
+    FROM repertorio
+    WHERE (nom_rep = vnom_rep) AND (ban = vcod_ban);
+    
+    UPDATE banda_evento
+    SET rep  = vcod_rep
+    WHERE (cod_ban = vcod_ban)
+    AND (cod_eve = vcod_eve);
+
+END trocar_repertorio;
+
+DROP PROCEDURE trocar_repertorio;
+
+EXECUTE trocar_repertorio('Metallica', 'São Paulo Trip', 'Repertorio01');
+
+
+
+
+
+--  Etapa3: ELABORAÇÃO E IMPLEMENTAÇÃO DE DUAS FUNCTIONS
+
+
+1. Elaborar e resolver DUAS functions contendo, pelo menos, UM argumento e DUAS tabelas.
+
+A partir de uma determinada banda, retornar quantos eventos essa banda irá participar. 
+
+CREATE OR REPLACE FUNCTION qtdEventosBanda
+(anome_banda IN banda.nom_ban%type
+)
+RETURN INTEGER
+IS
+vqtdEventos INTEGER:=0;
+BEGIN
+    SELECT COUNT(cod_eve) INTO vqtdEventos
+    FROM banda_evento ev INNER JOIN banda b 
+    ON (ev.cod_ban = b.cod_ban)
+    WHERE b.nom_ban = anome_banda
+    GROUP BY ev.cod_ban;
+
+    RETURN vqtdEventos;
+
+END qtdEventosBanda;
+
+SELECT qtdEventosBanda('Metallica')
+FROM DUAL;
+
+
+
+
+
+Retornar o repertório de uma determinada banda num evento.
+
+CREATE OR REPLACE FUNCTION repertorioEvento
+(anome_banda IN banda.nom_ban%type,
+anome_evento IN evento.nom_eve%type
+)
+RETURN VARCHAR
+IS
+vrepertorio VARCHAR(20);
+vcod_ban INTEGER:=0;
+vcod_eve INTEGER:=0;
+vcod_rep INTEGER:=0;
+BEGIN
+    SELECT cod_ban INTO vcod_ban
+    FROM banda
+    WHERE (nom_ban = anome_banda);
+    
+    SELECT cod_eve INTO vcod_eve
+    FROM evento
+    WHERE (nom_eve = anome_evento);
+
+    SELECT rep INTO vcod_rep 
+    FROM banda_evento
+    WHERE (cod_ban = vcod_ban)
+    AND (cod_eve = vcod_eve);
+
+    SELECT nom_rep INTO vrepertorio
+    FROM repertorio
+    WHERE (cod_rep = vcod_rep);
+
+    RETURN vrepertorio;
+    
+END repertorioEvento;
+
+SELECT repertorioEvento('Metallica', 'São Paulo Trip')
+FROM DUAL;
+
+
+
+
+
+-- Etapa4: ELABORAÇÃO E IMPLEMENTAÇÃO DE DOIS TRIGGERS
+
+
+1. Elaborar e resolver DOIS triggers sendo que:
+ - pelo menos um trigger deverá ser disparado por dois ou três eventos (INSERT, UPDATE e DELETE).
+ - para cada evento deverá ser feito uma ação diferente;
+ - deverá ser utilizada uma sequência em, pelo menos, um dos triggers;
+ - é necessário também colocar os comandos que você utilizou para testar os triggers.
+
+Ao criar evento registrar na tabela eventos_ativos ou ao atualizar o valor do ingresso do evento registrar na tabela eventos_alterados. 
+
+DROP TABLE eventos_ativos CASCADE CONSTRAINT;
+DROP TABLE eventos_alterados CASCADE CONSTRAINT;
+DROP SEQUENCE seq1;
+DROP SEQUENCE seq2;
+DROP TRIGGER trigger01;
+DROP TRIGGER trigger02;
+
+CREATE TABLE eventos_ativos
+(
+cod INTEGER NOT NULL,
+nom_eve VARCHAR(20) NOT NULL,
+data_insercao DATE,
+PRIMARY KEY(cod)
+);
+
+CREATE TABLE eventos_alterados
+(
+cod INTEGER NOT NULL,
+nom_eve VARCHAR(20) NOT NULL,
+ingresso_antigo INTEGER NOT NULL,
+ingresso_novo INTEGER NOT NULL,
+data_alteracao DATE,
+PRIMARY KEY(cod)
+);
+
+CREATE SEQUENCE seq1
+START WITH 100
+INCREMENT BY 20
+MINVALUE 100
+MAXVALUE 10000;
+
+CREATE SEQUENCE seq2
+START WITH 500
+INCREMENT BY 5
+MINVALUE 500
+MAXVALUE 10000;
+
+CREATE OR REPLACE TRIGGER trigger01
+AFTER
+INSERT OR UPDATE OF vlr_ingres
+ON evento
+FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+	INSERT INTO eventos_ativos(cod, nom_eve,  data_insercao)
+	VALUES (seq1.NEXTVAL, :new.nom_eve, SYSDATE);
+    ELSIF UPDATING THEN
+        INSERT INTO eventos_alterados(cod, nom_eve, ingresso_antigo, ingresso_novo, data_alteracao)
+	VALUES (seq2.NEXTVAL, :old.nom_eve, :old.vlr_ingres, :new.vlr_ingres, SYSDATE);
+    END IF;
+END;
+
+Testes:
+
+INSERT INTO evento (cod_eve, nom_eve, loc, vlr_ingres) VALUES (4, 'Lollapalooza', 'São Paulo', 700);
+SELECT * FROM eventos_ativos;
+
+UPDATE evento SET vlr_ingres = 300 WHERE cod_eve=4;
+SELECT * FROM eventos_alterados;
+
+
+
+
+
+Ao excluir uma banda ativa, também excluir as participações dessa banda em eventos.
+
+CREATE OR REPLACE TRIGGER trigger02
+BEFORE
+DELETE 
+ON eventos_ativos
+FOR EACH ROW
+BEGIN
+    DELETE FROM banda_evento WHERE cod_eve IN (SELECT cod_eve FROM EVENTO where nom_eve = :old.nom_eve);    
+END;
+
+Testes:
+
+SELECT * FROM banda_evento;
+
+DELETE FROM eventos_ativos WHERE cod = '120';

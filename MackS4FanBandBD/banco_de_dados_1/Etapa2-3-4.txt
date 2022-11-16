@@ -1,0 +1,247 @@
+-- Nome: Dário Teles de Oliveira	TIA: 41582391
+-- Projeto do Lab de BD-I
+
+
+
+-- Etapa2: SCRIPT DE CRIAÇÃO DO BANCO DE DADOS e INSERÇÃO DE DADOS
+
+
+-- 1. script de criação do banco de dados, ou seja, DROP TABLE e CREATE TABLE.
+
+DROP TABLE banda_evento CASCADE CONSTRAINT;
+DROP TABLE repertorio_musica CASCADE CONSTRAINT;
+DROP TABLE repertorio CASCADE CONSTRAINT;
+DROP TABLE musica CASCADE CONSTRAINT;
+DROP TABLE evento CASCADE CONSTRAINT;
+DROP TABLE banda CASCADE CONSTRAINT;
+
+CREATE TABLE banda
+(
+cod_ban INTEGER NOT NULL,
+nom_ban VARCHAR(200) NOT NULL,
+email VARCHAR(200) NOT NULL,
+PRIMARY KEY(cod_ban)
+);
+
+CREATE TABLE evento
+(
+cod_eve INTEGER NOT NULL,
+nom_eve VARCHAR(20) NOT NULL,
+loc VARCHAR(200),
+vlr_ingres INTEGER,
+PRIMARY KEY(cod_eve)
+);
+
+CREATE TABLE musica
+(
+cod_mus INTEGER NOT NULL,
+nom_mus VARCHAR(200) NOT NULL,
+comp VARCHAR(20) NOT NULL,
+PRIMARY KEY(cod_mus)
+);
+
+CREATE TABLE repertorio
+(
+cod_rep INTEGER NOT NULL,
+nom_rep VARCHAR(200) NOT NULL,
+ban INTEGER NOT NULL,
+PRIMARY KEY(cod_rep),
+FOREIGN KEY (ban) REFERENCES banda(cod_ban)
+);
+
+CREATE TABLE repertorio_musica
+(
+cod_mus INTEGER,
+cod_rep INTEGER,
+PRIMARY KEY(cod_mus, cod_rep),
+FOREIGN KEY (cod_mus) REFERENCES musica(cod_mus),
+FOREIGN KEY (cod_rep) REFERENCES repertorio(cod_rep)
+);
+
+CREATE TABLE banda_evento
+(
+cod_ban INTEGER,
+cod_eve INTEGER,
+rep INTEGER,
+PRIMARY KEY(cod_ban, cod_eve, rep),
+FOREIGN KEY (cod_ban) REFERENCES banda(cod_ban),
+FOREIGN KEY (cod_eve) REFERENCES evento(cod_eve),
+FOREIGN KEY (rep) REFERENCES repertorio(cod_rep)
+);
+
+
+
+
+
+-- 2. inserção de dados - INSERT - nas tabelas criadas do banco de dados. 
+
+INSERT INTO banda (cod_ban, nom_ban, email) VALUES (1, 'Metallica', 'contato@metallica.com');
+INSERT INTO banda (cod_ban, nom_ban, email) VALUES (2, 'Green Day', 'eventos@gd.com');
+INSERT INTO banda (cod_ban, nom_ban, email) VALUES (3, 'U2', 'u2@u2.ir');
+
+INSERT INTO evento (cod_eve, nom_eve, loc, vlr_ingres) VALUES (1, 'RockinRio', 'Rio de Janeiro', 800);
+INSERT INTO evento (cod_eve, nom_eve, loc, vlr_ingres) VALUES (2, 'São Paulo Trip', 'São Paulo', 550);
+INSERT INTO evento (cod_eve, nom_eve, loc, vlr_ingres) VALUES (3, 'Festival', 'Curitiba', 330);
+
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (1, 'She', 'Green Day');
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (2, 'Paradise', 'Coldplay');
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (3, 'Iron man', 'Black Sabbath');
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (4, 'One', 'Metallica');
+INSERT INTO musica (cod_mus, nom_mus, comp) VALUES (5, 'Bell', 'Metallica');
+
+INSERT INTO repertorio (cod_rep, nom_rep, ban) VALUES (1, 'Repertorio01', 1);
+INSERT INTO repertorio (cod_rep, nom_rep, ban) VALUES (2, 'Repertorio02', 2);
+INSERT INTO repertorio (cod_rep, nom_rep, ban) VALUES (3, 'Repertorio03', 3);
+INSERT INTO repertorio (cod_rep, nom_rep, ban) VALUES (4, 'Repertorio04', 1);
+
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (4, 1);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (5, 1);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (1, 2);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (3, 2);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (4, 3);
+INSERT INTO repertorio_musica (cod_mus, cod_rep) VALUES (2, 4);
+
+INSERT INTO banda_evento (cod_ban, cod_eve, rep) VALUES (1, 1, 1);
+INSERT INTO banda_evento (cod_ban, cod_eve, rep) VALUES (1, 2, 4);
+INSERT INTO banda_evento (cod_ban, cod_eve, rep) VALUES (2, 3, 2);
+INSERT INTO banda_evento (cod_ban, cod_eve, rep) VALUES (3, 2, 3);
+
+
+
+
+
+-- Etapa3: ELABORAÇÃO E IMPLEMENTAÇÃO DE CONSULTAS
+
+
+-- 1. Elaborar e resolver UMA consulta contendo GROUP BY e HAVING, mas envolvendo duas ou mais tabelas (INNER JOIN);
+
+Consultar o nome e a soma total dos valores do ingresso de todos os eventos realizados pelas bandas que soma seja maior que 500 reais.
+
+SELECT b.nom_ban, SUM(vlr_ingres) 
+FROM banda b INNER JOIN banda_evento be 
+ON b.cod_ban=be.cod_ban 
+INNER JOIN evento e 
+ON be.cod_eve=e.cod_eve 
+GROUP BY b.nom_ban 
+HAVING SUM(vlr_ingres) > 500;
+
+
+-- 2. Elaborar e resolver UMA consulta contendo DUAS tabelas e utilizando LEFT JOIN ou RIGHT JOIN;
+
+Consultar os nomes e nomes dos repertorios das bandas em orden crescente
+
+SELECT b.nom_ban, r.nom_rep 
+FROM banda b RIGHT JOIN repertorio r 
+ON b.cod_ban = r.ban 
+ORDER BY b.nom_ban, r.nom_rep;
+
+
+-- 3. Elaborar e resolver UMA consulta contendo TRÊS ou mais tabelas e utilizando LEFT JOIN ou RIGHT JOIN;
+
+Consultar os nomes dos eventos e os nomes das bandas que iram participar.
+
+SELECT e.nom_eve, b.nom_ban 
+FROM evento e 
+LEFT JOIN banda_evento be 
+ON e.cod_eve=be.cod_eve 
+LEFT JOIN banda b 
+ON be.cod_ban=b.cod_ban;
+
+
+-- 4. Elaborar e resolver UMA consulta contendo DUAS tabelas e contendo SUB-SELECT;
+
+Consultar a localização dos eventos que tocarão o repertório de código 1.
+
+SELECT loc 
+FROM evento
+WHERE cod_eve = (
+    SELECT cod_eve
+    FROM banda_evento 
+    WHERE rep=1
+);
+
+
+-- 5. Elaborar e resolver UMA consulta contendo TRÊS ou mais tabelas e utilizando SUB-SELECT.
+
+Consultar todas as músicas tocadas pela banda "Matallica" sem repetição.
+
+SELECT DISTINCT(m.nom_mus), m.comp
+FROM repertorio_musica rm INNER JOIN musica m 
+ON rm.cod_mus = m.cod_mus 
+WHERE rm.cod_rep IN(
+	SELECT r.cod_rep
+    FROM repertorio r 
+    INNER JOIN banda b
+    ON r.ban = b.cod_ban
+    WHERE b.nom_ban = 'Metallica'
+);
+
+
+
+
+
+-- Etapa4: ELABORAÇÃO E IMPLEMENTAÇÃO DE PROCEDURES
+
+-- 1. Elaborar e resolver DUAS procedures contendo, pelo menos, UM argumento e DUAS tabelas.
+
+Excluir uma banda de um determinado evento
+
+CREATE PROCEDURE remover_banda
+(vnom_ban IN VARCHAR,
+vnom_eve IN VARCHAR)
+IS
+vcod_ban INTEGER;
+vcod_eve INTEGER;
+BEGIN
+	SELECT cod_ban INTO vcod_ban
+  	FROM banda
+  	WHERE (nom_ban = vnom_ban);
+    
+    SELECT cod_eve INTO vcod_eve
+  	FROM evento
+  	WHERE (nom_eve = vnom_eve);
+    
+    DELETE FROM banda_evento
+    WHERE cod_ban = vcod_ban AND cod_eve = vcod_eve;
+
+END remover_banda;
+
+DROP PROCEDURE remover_banda;
+
+EXECUTE remover_banda('Green Day', 'Festival');
+
+
+Trocar o repertorio que será tocado num evento por uma determinada banda
+
+CREATE PROCEDURE trocar_repertorio
+(vnom_ban IN VARCHAR,
+vnom_eve IN VARCHAR,
+vnom_rep IN VARCHAR
+)
+IS
+vcod_ban INTEGER;
+vcod_eve INTEGER;
+vcod_rep INTEGER;
+BEGIN
+	SELECT cod_ban INTO vcod_ban
+  	FROM banda
+  	WHERE (nom_ban = vnom_ban);
+    
+    SELECT cod_eve INTO vcod_eve
+  	FROM evento
+  	WHERE (nom_eve = vnom_eve);
+    
+    SELECT cod_rep INTO vcod_rep
+  	FROM repertorio
+  	WHERE (nom_rep = vnom_rep) AND (ban = vcod_ban);
+    
+    UPDATE banda_evento
+    SET rep  = vcod_rep
+    WHERE (cod_ban = vcod_ban)
+    AND (cod_eve = vcod_eve);
+
+END trocar_repertorio;
+
+DROP PROCEDURE trocar_repertorio;
+
+EXECUTE trocar_repertorio('Metallica', 'São Paulo Trip', 'Repertorio01');
