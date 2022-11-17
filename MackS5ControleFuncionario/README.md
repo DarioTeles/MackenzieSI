@@ -4,7 +4,7 @@ Esse é um projeto destinado a disciplina de Tecnologias de Sistemas Legados do 
 
 # Conteúdo do repositório
 
-[**/documentacao/code/**](https://github.com/DarioTeles/MackS5ControleFuncionario/tree/master/code) - Códigos do projeto para serem importados na IDE.
+[**/documentacao/code/**](code) - Códigos do projeto para serem importados na IDE.
 
 
 # Recursos
