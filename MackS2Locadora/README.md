@@ -1,24 +1,24 @@
 # MackS2Locadora
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS2Locadora/blob/master/images/demonstracao1.JPG"/>
+	<img src="images/demonstracao1.JPG"/>
 </p>
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS2Locadora/blob/master/images/demonstracao2.JPG"/>
+	<img src="images/demonstracao2.JPG"/>
 </p>
 
-Esse é um projeto destinado a disciplina de Análise, Projeto e Desenvolvimento 1 do curso de Sistemas de Informação realizada no primeiro semestre de 2016 e consiste numa aplicação de alocação de filmes e jogos no qual é realizado o cadastro de produtos pelo administrador, o cadastro de clientes e a gestão de alocação de produtos.
+Esse Ã© um projeto destinado a disciplina de AnÃ¡lise, Projeto e Desenvolvimento 1 do curso de Sistemas de InformaÃ§Ã£o realizada no primeiro semestre de 2016 e consiste numa aplicaÃ§Ã£o de alocaÃ§Ã£o de filmes e jogos no qual Ã© realizado o cadastro de produtos pelo administrador, o cadastro de clientes e a gestÃ£o de alocaÃ§Ã£o de produtos.
 
-# Conteúdo do repositório
-
-
-
-[**/documentacao/code/**](https://github.com/DarioTeles/MackS2Locadora/tree/master/code/) - Códigos do projeto para serem importados na IDE.
+# ConteÃºdo do repositÃ³rio
 
 
 
-[**/documentacao/especificacao/**](https://github.com/DarioTeles/MackS2Locadora/tree/master/especificacao/) - Especificações do projeto.
+[**/documentacao/code/**](https://github.com/DarioTeles/MackS2Locadora/tree/master/code/) - CÃ³digos do projeto para serem importados na IDE.
+
+
+
+[**/documentacao/especificacao/**](https://github.com/DarioTeles/MackS2Locadora/tree/master/especificacao/) - EspecificaÃ§Ãµes do projeto.
 
 
 
