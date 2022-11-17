@@ -16,7 +16,7 @@ Como propostas de solução, foi aplicado algoritmos de Machine Learning, em que
 	<b>K-means</b> – por se tratar de um algoritmo de agrupamento, ele desconsidera os rótulos de classificação e aplica o conceito de centro de grupos, que trata de médias aritméticas em que definem centros e vincula os pontos ao centro mais próximo deles. Segue abaixo a definição dos grupos, a matriz de confusão e a acurácia da aplicação no problema respectivamente:
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS7ClassificacaoDigitos/blob/master/images/demonstracao1.JPG"/>
+	<img src="images/demonstracao1.JPG"/>
 </p>
 
 </li>
@@ -24,7 +24,7 @@ Como propostas de solução, foi aplicado algoritmos de Machine Learning, em que
 	<b>Random Forest</b> – por sua vez é um algoritmo de classificação que utiliza a estrutura de árvores de decisão. Segue abaixo a matriz de confusão e o relatório de classificação da aplicação do algoritmo:
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS7ClassificacaoDigitos/blob/master/images/demonstracao2.JPG"/>
+	<img src="images/demonstracao2.JPG"/>
 </p>
 	
 </li>
@@ -38,7 +38,7 @@ erros de identificação de dígitos em relação ao algoritmo Random Forest pri
 
 # Conteúdo do repositório
 
-[**/documentacao/code/**](https://github.com/DarioTeles/MackS7ClassificacaoDigitos/tree/master/code/) - Códigos do projeto para serem importados na IDE.
+[**/documentacao/code/**](code/) - Códigos do projeto para serem importados na IDE.
 
 # Recursos
 
