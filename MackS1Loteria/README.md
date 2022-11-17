@@ -10,7 +10,7 @@ Esse é um projeto destinado a disciplina de Laboratório de Programação do cu
 
 # Conteúdo do repositório
 
-[**/documentacao/code/**](https://github.com/DarioTeles/MackS1Loteria/tree/master/code/) - Códigos do projeto para serem importados na IDE.
+[**/documentacao/code/**](code/) - Códigos do projeto para serem importados na IDE.
 
 # Recursos
 
