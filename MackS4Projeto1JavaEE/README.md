@@ -7,11 +7,11 @@ Esse é um projeto destinado a disciplina de Linguagem de Programação 3 do cur
 Nesse fluxo foi utilizado os componentes corporativos Filter e Session, responsáveis pela lógica de autenticação e criação de sessão respectivamente.
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS4Projeto1JavaEE/blob/master/images/demonstracao1.JPG"/>
+	<img src="images/demonstracao1.JPG"/>
 </p>
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS4Projeto1JavaEE/blob/master/images/demonstracao2.JPG"/>
+	<img src="images/demonstracao2.JPG"/>
 </p>
 
 # AppFrontController
@@ -19,15 +19,15 @@ Nesse fluxo foi utilizado os componentes corporativos Filter e Session, respons�
 Esse fluxo define o CRUD da entidade usuário e nele foi utilizado o componente comporativo JPA com Hibernate, responsável pelo MOR (Mapeamento Objeto Relacional); Padrão Arquitetural MVC, Design Pattern Factory e especificação Servlet.
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS4Projeto1JavaEE/blob/master/images/demonstracao3.JPG"/>
+	<img src="images/demonstracao3.JPG"/>
 </p>
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS4Projeto1JavaEE/blob/master/images/classdiagram_frontcontroller.jpg"/>
+	<img src="images/classdiagram_frontcontroller.jpg"/>
 </p>
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS4Projeto1JavaEE/blob/master/images/classdiagram_daomodel.jpg"/>
+	<img src="images/classdiagram_daomodel.jpg"/>
 </p>
 
 # MeuPrimeiroBean
@@ -37,8 +37,8 @@ Exemplo de uso do compontente corporativo EJB responsável pela implementação 
 
 # Conteúdo do repositório
 
-[**/documentacao/db/**](https://github.com/DarioTeles/MackS4Projeto1JavaEE/blob/master/db/) - Backup da base de dados utilizado no desenvolvimento do projeto.<br>
-[**/documentacao/code/**](https://github.com/DarioTeles/MackS4Projeto1JavaEE/blob/master/code/) - Códigos do projeto para serem abertos na IDE Netbeans com o serviço Derby e Wildfly (JBoss) previamente instalados.<br>
+[**/documentacao/db/**](db/) - Backup da base de dados utilizado no desenvolvimento do projeto.<br>
+[**/documentacao/code/**](code/) - Códigos do projeto para serem abertos na IDE Netbeans com o serviço Derby e Wildfly (JBoss) previamente instalados.<br>
 
 
 # Recursos
