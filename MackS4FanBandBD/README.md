@@ -16,6 +16,6 @@ Esse é um projeto destinado às disciplinas de Banco de Dados 1 e 2 do curso de
 
 # Conteúdo do repositório
 
-[**/modelagem/**](modelagem) - Documentação e modelagem do banco de dados. <br>
-[**documentacao/banco_de_dados_1/**](banco_de_dados_1) - Pré-requisistos e scripts da disciplina de Banco de Dados 1. <br>
-[**documentacao/banco_de_dados_2/**](banco_de_dados_2) - Pré-requisistos e scripts da disciplina de Banco de Dados 2. <br>
+[**/documentacao/modelagem/**](modelagem) - Documentação e modelagem do banco de dados. <br>
+[**/documentacao/banco_de_dados_1/**](banco_de_dados_1) - Pré-requisistos e scripts da disciplina de Banco de Dados 1. <br>
+[**/documentacao/banco_de_dados_2/**](banco_de_dados_2) - Pré-requisistos e scripts da disciplina de Banco de Dados 2. <br>
