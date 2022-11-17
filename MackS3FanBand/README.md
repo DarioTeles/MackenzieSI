@@ -1,7 +1,7 @@
 # MackS3FanBand
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS3FanBand/blob/master/images/demonstracao1.jpg" width="896" height="450"/>
+	<img src="images/demonstracao1.jpg" width="896" height="450"/>
 
 
 </p>
@@ -9,24 +9,24 @@
 
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS3FanBand/blob/master/images/demonstracao2.jpg" width="650" height="450"/>
+	<img src="images/demonstracao2.jpg" width="650" height="450"/>
 
 
 </p>
 
 <p align="center">
-	<img src="https://github.com/DarioTeles/MackS3FanBand/blob/master/images/demonstracao3.jpg" width="896" height="450"/>
+	<img src="images/demonstracao3.jpg" width="896" height="450"/>
 
 
 </p>
 
-Esse é um projeto destinado a disciplina de Linguagem de Programação 2 do curso de Sistemas de Informação realizada no segundo semestre de 2016 e consiste numa aplicação web de gestão de músicas e eventos para profissionais de música, e de um espaço para fans no qual é possível votar nas músicas favoritas com o intuito de auxiliar o músico ao definir um set list para um evento. O projeto foi estrututurado numa arquitetura MVC e utilizado linguagens de programação Java e Java Script acompanhado pelo framework Bootstrap responsável pela responsividade e interface com o usuário.
+Esse Ã© um projeto destinado a disciplina de Linguagem de ProgramaÃ§Ã£o 2 do curso de Sistemas de InformaÃ§Ã£o realizada no segundo semestre de 2016 e consiste numa aplicaÃ§Ã£o web de gestÃ£o de mÃºsicas e eventos para profissionais de mÃºsica, e de um espaÃ§o para fans no qual Ã© possÃ­vel votar nas mÃºsicas favoritas com o intuito de auxiliar o mÃºsico ao definir um set list para um evento. O projeto foi estrututurado numa arquitetura MVC e utilizado linguagens de programaÃ§Ã£o Java e Java Script acompanhado pelo framework Bootstrap responsÃ¡vel pela responsividade e interface com o usuÃ¡rio.
 
-# Conteúdo do repositório
+# ConteÃºdo do repositÃ³rio
 
-[**/documentacao/bd/**](https://github.com/DarioTeles/MackS3FanBand/blob/master/bd/) - Backup da base de dados utilizado no desenvolvimento do projeto.<br>
-[**/documentacao/code/**](https://github.com/DarioTeles/MackS3FanBand/blob/master/code/) - Códigos do projeto para serem abertos na IDE Netbeans com o serviço Derby e GlassFish previamente instalados.<br>
-[**/documentacao/especificacao/**](https://github.com/DarioTeles/MackS3FanBand/tree/master/especificacao/) - Especificações do projeto.
+[**/documentacao/bd/**](bd/) - Backup da base de dados utilizado no desenvolvimento do projeto.<br>
+[**/documentacao/code/**](code/) - CÃ³digos do projeto para serem abertos na IDE Netbeans com o serviÃ§o Derby e GlassFish previamente instalados.<br>
+[**/documentacao/especificacao/**](especificacao/) - EspecificaÃ§Ãµes do projeto.
 
 
 # Recursos
@@ -36,6 +36,6 @@ Esse é um projeto destinado a disciplina de Linguagem de Programação 2 do curso 
 [**NetBeans IDE 8.2**](https://github.com/apache/netbeans) - Software de desenvolvimento.<br>
 [**Apache Derby**](https://github.com/apache/derby) - Banco de Dados.
 
-# Pré-requisitos
+# PrÃ©-requisitos
 
-Antes de abrir o projeto no Netbeans é necessário baixar e instalar o Derby pois o caminho de instalação e da base de dados será parametrizada na IDE.
+Antes de abrir o projeto no Netbeans Ã© necessÃ¡rio baixar e instalar o Derby pois o caminho de instalaÃ§Ã£o e da base de dados serÃ¡ parametrizada na IDE.
