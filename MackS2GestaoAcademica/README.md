@@ -9,9 +9,9 @@ Esse é um projeto destinado a disciplina de Linguagem de Programação 1 do cur
 
 # Conteúdo do repositório
 
-[**/documentacao/code/**](https://github.com/DarioTeles/MackS2GestaoAcademica/tree/master/code/) - Códigos do projeto para serem importados na IDE.
+[**/documentacao/code/**](code/) - Códigos do projeto para serem importados na IDE.
 
-[**/documentacao/especificacao/**](https://github.com/DarioTeles/MackS2GestaoAcademica/tree/master/especificacao/) - Especificações do projeto.
+[**/documentacao/especificacao/**](especificacao/) - Especificações do projeto.
 
 # Recursos
 
