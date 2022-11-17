@@ -14,11 +14,11 @@ Esse é um projeto destinado a disciplina de Análise, Projeto e Desenvolvimento
 
 
 
-[**/documentacao/code/**](https://github.com/DarioTeles/MackS2Locadora/tree/master/code/) - Códigos do projeto para serem importados na IDE.
+[**/documentacao/code/**](code/) - Códigos do projeto para serem importados na IDE.
 
 
 
-[**/documentacao/especificacao/**](https://github.com/DarioTeles/MackS2Locadora/tree/master/especificacao/) - Especificações do projeto.
+[**/documentacao/especificacao/**](especificacao/) - Especificações do projeto.
 
 
 
