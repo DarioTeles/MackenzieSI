@@ -2,7 +2,7 @@
 
 
 <p align="center">  
-	<img src="MackS1Loteria/images/demonstracao.JPG"/>
+	<img src="images/demonstracao.JPG"/>
 
 </p>
 
